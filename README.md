@@ -4,7 +4,7 @@ This plugin provides the ability to have a normal post edit screen which can be 
 
 The plugin adds a menu item in the WordPress admin for each post types which is marked as having an archive when it was registered. When this menu item is clicked it gives a normal post edit screen where users can add a title and content as well as a featured image. These can then be output on the post type archive pages.
 
-<div><p><a href="https://soapbox.wistia.com/videos/CskC3vQkmh" target="_self"><img src="https://embed-ssl.wistia.com/deliveries/9839a8a880f40ee8d186ede96f20f6d0c6e0dde9.jpg?image_play_button_size=2x&amp;image_crop_resized=960x600&amp;image_play_button=1&amp;image_play_button_color=00D6A5e0" style="height:250px;width:400px;" width="400" height="250"/></a></p><p><a href="https://soapbox.wistia.com/videos/CskC3vQkmh">WordPress Post Type Archive Pages Plugin Demonstration</a></p></div>
+[![Video Thumbnail of Post Type Archive Pages](https://embed-ssl.wistia.com/deliveries/9839a8a880f40ee8d186ede96f20f6d0c6e0dde9.jpg?image_play_button=1&image_play_button_color=00D6A5e0&image_play_button_size=2x)(https://soapbox.wistia.com/videos/CskC3vQkmh)]
 
 ## FAQ
 
