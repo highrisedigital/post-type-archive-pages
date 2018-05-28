@@ -102,7 +102,8 @@ function hdptap_create_archive_pages( $post_type, $args ) {
 					'post_type'   => 'hdptap_cpt_archive',
 					'post_title'  => sanitize_text_field( $args->labels->name ),
 					'post_status' => 'publish',
-				)
+				),
+				$hdptap_options['post_types'][ $post_type ]
 			)
 		);
 
