@@ -32,10 +32,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'HDPTAP_LOCATION', dirname( __FILE__ ) );
 define( 'HDPTAP_LOCATION_URL', plugins_url( '', __FILE__ ) );
 
-// load in the archive pages post type.
-require_once( dirname( __FILE__ ) . '/inc/post-types.php' );
-require_once( dirname( __FILE__ ) . '/inc/admin.php' );
-require_once( dirname( __FILE__ ) . '/inc/template-functions.php' );
+// this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed.
+define( 'EDD_HDPTAP_STORE_URL', apply_filters( 'hd_options_store_url', 'https://store.highrise.digital' ) );
+
+// the name of your product. This is the title of your product in EDD and should match the download title in EDD exactly.
+define( 'EDD_HDPTAP_ITEM_NAME', 'Post Type Archive Pages' );
+
+// check if the EDD plugin updater class is already available.
+if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+
+	// load our custom updater if it doesn't already exist.
+	include( dirname( __FILE__ ) . '/inc/updater/EDD_SL_Plugin_Updater.php' );
+
+}
+
+/**
+ * This function initiates the auto updates from the store.
+ */
+function hdptap_plugin_updater() {
+
+	// setup the updater.
+	$edd_updater = new EDD_SL_Plugin_Updater(
+		EDD_HDPTAP_STORE_URL,
+		__FILE__,
+		array(
+			'version'   => '1.0', // current version number.
+			'license'   => apply_filters( 'hdptap_license_key', '' ),, // license key (used get_option above to retrieve from DB).
+			'item_name' => EDD_HDPTAP_ITEM_NAME, // name of this plugin.
+			'author'    => 'Highrise Digital', // author of this plugin.
+			'url'       => home_url(),
+		)
+	);
+}
+add_action( 'admin_init', 'hdptap_plugin_updater' );
 
 /**
  * Function to run on plugins load.
@@ -68,6 +97,11 @@ function hdptap_activation() {
 }
 
 register_activation_hook( __FILE__, 'hdptap_activation' );
+
+// load in the archive pages post type.
+require_once( dirname( __FILE__ ) . '/inc/post-types.php' );
+require_once( dirname( __FILE__ ) . '/inc/admin.php' );
+require_once( dirname( __FILE__ ) . '/inc/template-functions.php' );
 
 /**
  * Creates the archives pages for the post types that are set to use an archive.
