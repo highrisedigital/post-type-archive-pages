@@ -102,6 +102,7 @@ register_activation_hook( __FILE__, 'hdptap_activation' );
 require_once( dirname( __FILE__ ) . '/inc/post-types.php' );
 require_once( dirname( __FILE__ ) . '/inc/admin.php' );
 require_once( dirname( __FILE__ ) . '/inc/template-functions.php' );
+require_once( dirname( __FILE__ ) . '/inc/filters.php' );
 
 /**
  * Creates the archives pages for the post types that are set to use an archive.
@@ -118,7 +119,7 @@ function hdptap_create_archive_pages( $post_type, $args ) {
 	}
 
 	// if this post type is not supposed to support an archive - do nothing.
-	if ( true !== $args->has_archive ) {
+	if ( false === $args->has_archive ) {
 		return;
 	}
 
