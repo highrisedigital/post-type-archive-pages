@@ -57,7 +57,7 @@ function hdptap_plugin_updater() {
 		__FILE__,
 		array(
 			'version'   => '1.0', // current version number.
-			'license'   => apply_filters( 'hdptap_license_key', '' ),, // license key (used get_option above to retrieve from DB).
+			'license'   => apply_filters( 'hdptap_license_key', '' ), // license key (used get_option above to retrieve from DB).
 			'item_name' => EDD_HDPTAP_ITEM_NAME, // name of this plugin.
 			'author'    => 'Highrise Digital', // author of this plugin.
 			'url'       => home_url(),
@@ -102,6 +102,7 @@ register_activation_hook( __FILE__, 'hdptap_activation' );
 require_once( dirname( __FILE__ ) . '/inc/post-types.php' );
 require_once( dirname( __FILE__ ) . '/inc/admin.php' );
 require_once( dirname( __FILE__ ) . '/inc/template-functions.php' );
+require_once( dirname( __FILE__ ) . '/inc/filters.php' );
 
 /**
  * Creates the archives pages for the post types that are set to use an archive.
@@ -118,7 +119,7 @@ function hdptap_create_archive_pages( $post_type, $args ) {
 	}
 
 	// if this post type is not supposed to support an archive - do nothing.
-	if ( true !== $args->has_archive ) {
+	if ( false === $args->has_archive ) {
 		return;
 	}
 
@@ -136,8 +137,7 @@ function hdptap_create_archive_pages( $post_type, $args ) {
 					'post_type'   => 'hdptap_cpt_archive',
 					'post_title'  => sanitize_text_field( $args->labels->name ),
 					'post_status' => 'publish',
-				),
-				$hdptap_options['post_types'][ $post_type ]
+				)
 			)
 		);
 
