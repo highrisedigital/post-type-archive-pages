@@ -17,22 +17,26 @@ function hdptap_register_cpt_archive_post_type() {
 	register_post_type(
 		'hdptap_cpt_archive',
 		array(
-			'description'           => __( 'Archive posts associated with each post type.', 'post-type-archive-pages' ),
-			'public'                => false,
-			'show_in_nav_menus'     => false,
-			'show_in_admin_bar'     => false,
-			'exclude_from_search'   => true,
-			'show_ui'               => true,
-			'show_in_menu'          => false, // TODO remove.
-			'can_export'            => true,
-			'delete_with_user'      => false,
-			'hierarchical'          => false,
-			'has_archive'           => false,
-			'menu_icon'             => 'dashicons-media-text',
-			'query_var'             => 'hdptap_cpt_archive',
-			'menu_position'         => 26,
+			'description'         => __( 'Archive posts associated with each post type.', 'post-type-archive-pages' ),
+			'public'              => false,
+			'show_in_nav_menus'   => false,
+			'show_in_admin_bar'   => false,
+			'exclude_from_search' => true,
+			'show_ui'             => true,
+			'show_in_menu'        => false, // TODO remove.
+			'can_export'          => true,
+			'delete_with_user'    => false,
+			'hierarchical'        => false,
+			'has_archive'         => false,
+			'menu_icon'           => 'dashicons-media-text',
+			'query_var'           => 'hdptap_cpt_archive',
+			'menu_position'       => 26,
+			'map_meta_cap'        => true, // Set to `false`, if users are not allowed to edit/delete existing posts.
+			'capabilities'        => array(
+				'create_posts' => false, // Removes support for the "Add New" function ( use 'do_not_allow' instead of false for multisite set ups ).
+			),
 
-			'labels'                => array(
+			'labels'              => array(
 				'name'                  => _x( 'Archive Pages', 'post type general name', 'post-type-archive-pages' ),
 				'singular_name'         => _x( 'Archive Page', 'post type singular name', 'post-type-archive-pages' ),
 				'add_new'               => _x( 'Add New', 'Call to Action', 'post-type-archive-pages' ),
@@ -48,10 +52,9 @@ function hdptap_register_cpt_archive_post_type() {
 				'set_featured_image'    => __( 'Set Archive Page Image', 'post-type-archive-pages' ),
 				'remove_featured_image' => __( 'Remove Archive Page Image', 'post-type-archive-pages' ),
 				'use_featured_image'    => __( 'Use Archive Page Image', 'post-type-archive-pages' ),
-
 			),
 
-			'supports'              => array(
+			'supports'            => array(
 				'title',
 				'editor',
 				'thumbnail',
