@@ -108,8 +108,10 @@ require_once( dirname( __FILE__ ) . '/inc/filters.php' );
  * Creates the archives pages for the post types that are set to use an archive.
  * If the pages already exist it does nothing for that post type.
  *
- * @param  string $post_type The name of the post type registered.
- * @param  array  $args       An array of registered post type arguments.
+ * @param string       $post_type The name of the post type registered.
+ * @param WP_Post_Type $args      Arguments used to register the post type.
+ *
+ * @return mixed
  */
 function hdptap_create_archive_pages( $post_type, $args ) {
 
