@@ -31,6 +31,10 @@ function hdptap_register_cpt_archive_post_type() {
 			'menu_icon'             => 'dashicons-media-text',
 			'query_var'             => 'hdptap_cpt_archive',
 			'menu_position'         => 26,
+			'map_meta_cap'          => true, // Set to `false`, if users are not allowed to edit/delete existing posts.
+			'capabilities'          => array(
+				'create_posts' => false, // Removes support for the "Add New" function ( use 'do_not_allow' instead of false for multisite set ups ).
+			),
 
 			'labels'                => array(
 				'name'                  => _x( 'Archive Pages', 'post type general name', 'post-type-archive-pages' ),
